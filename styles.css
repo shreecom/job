@@ -67,6 +67,8 @@ body {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .nav-links a {
@@ -1240,35 +1242,39 @@ body {
     }
 }
 
+/* Install App Button Styles */
 .install-app-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
+    gap: 0.5rem;
+    width: auto;
     height: 40px;
-    max-width: none;
-    margin: 0.8rem auto;
-    padding: 0;
+    padding: 0 1.5rem;
     background: linear-gradient(45deg, #00ff9d, #00b8ff);
     color: #0a0a0a;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s ease;
+    margin-left: auto;
+    text-decoration: none;
 }
 
 .install-app-btn span {
-    display: none;
+    display: inline-block;
+    font-size: 0.9rem;
+    text-decoration: none;
 }
 
 .install-app-btn i {
     font-size: 1.2rem;
-    margin: 0;
 }
 
 .install-app-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+    text-decoration: none;
 }
 
 /* Mobile Navbar Styles */
@@ -1286,6 +1292,7 @@ body {
         padding: 2rem 0;
         transition: 0.3s ease;
         z-index: 1000;
+        margin: 0;
     }
 
     .nav-links.active {
@@ -1311,36 +1318,18 @@ body {
         color: #00ff9d;
     }
 
-    /* Install App Button Styles */
+    /* Install App Button Styles for Mobile */
     .install-app-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         width: 40px;
         height: 40px;
-        max-width: none;
-        margin: 0.8rem auto;
         padding: 0;
-        background: linear-gradient(45deg, #00ff9d, #00b8ff);
-        color: #0a0a0a;
-        text-align: center;
         border-radius: 50%;
-        font-weight: 600;
-        transition: all 0.3s ease;
+        margin-left: auto;
+        margin-right: 1rem;
     }
 
     .install-app-btn span {
         display: none;
-    }
-
-    .install-app-btn i {
-        font-size: 1.2rem;
-        margin: 0;
-    }
-
-    .install-app-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
     }
 
     .hamburger {
@@ -1387,7 +1376,7 @@ body {
     .install-app-btn {
         width: 36px;
         height: 36px;
-        margin: 0.6rem auto;
+        margin-right: 0.8rem;
     }
 
     .install-app-btn i {
@@ -1409,7 +1398,7 @@ body {
     .install-app-btn {
         width: 32px;
         height: 32px;
-        margin: 0.5rem auto;
+        margin-right: 0.6rem;
     }
 
     .install-app-btn i {
