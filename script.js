@@ -15,12 +15,22 @@ document.addEventListener('click', (e) => {
 
 // Image Slider
 const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
 let currentSlide = 0;
-const slideInterval = 5000; // Change slide every 5 seconds
+let isAnimating = false;
+const slideInterval = 6000; // Change slide every 6 seconds
+
+function updateDots(index) {
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+}
 
 function showSlide(index) {
+    if (isAnimating) return;
+    isAnimating = true;
+
     slides.forEach(slide => slide.classList.remove('active'));
     
     if (index >= slides.length) {
@@ -31,7 +41,13 @@ function showSlide(index) {
         currentSlide = index;
     }
     
+    updateDots(currentSlide);
     slides[currentSlide].classList.add('active');
+
+    // Reset animation flag after transition
+    setTimeout(() => {
+        isAnimating = false;
+    }, 800); // Match this with the CSS transition time
 }
 
 // Next and Previous button functionality
@@ -43,15 +59,71 @@ prevBtn.addEventListener('click', () => {
     showSlide(currentSlide - 1);
 });
 
+// Dot navigation
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showSlide(index);
+    });
+});
+
+// Touch events for mobile swipe
+let touchStartX = 0;
+let touchEndX = 0;
+
+const slider = document.querySelector('.hero-slider');
+
+slider.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+slider.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const difference = touchStartX - touchEndX;
+
+    if (Math.abs(difference) > swipeThreshold) {
+        if (difference > 0) {
+            // Swipe left
+            showSlide(currentSlide + 1);
+        } else {
+            // Swipe right
+            showSlide(currentSlide - 1);
+        }
+    }
+}
+
 // Automatic slider
+let slideTimer;
+
 function startSlider() {
-    setInterval(() => {
+    slideTimer = setInterval(() => {
         showSlide(currentSlide + 1);
     }, slideInterval);
 }
 
+function resetSlideTimer() {
+    clearInterval(slideTimer);
+    startSlider();
+}
+
+// Reset timer when manually changing slides
+[prevBtn, nextBtn, ...dots].forEach(control => {
+    control.addEventListener('click', resetSlideTimer);
+});
+
 // Initialize slider
 startSlider();
+
+// Pause slider on hover
+slider.addEventListener('mouseenter', () => {
+    clearInterval(slideTimer);
+});
+
+slider.addEventListener('mouseleave', startSlider);
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
