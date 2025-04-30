@@ -591,4 +591,871 @@ body {
 
 .slider-btn:hover {
     background: #1d4ed8;
+}
+
+/* Job Search Section */
+.job-search {
+    background: #f8fafc;
+    padding: 8rem 2rem 4rem;
+}
+
+.search-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.search-container h2 {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    display: flex;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-box input {
+    flex: 2;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.search-box select {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: white;
+}
+
+.search-box button {
+    padding: 1rem 2rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-box button:hover {
+    background: #1d4ed8;
+}
+
+/* Job Listings Section */
+.job-listings {
+    padding: 4rem 2rem;
+    background: white;
+}
+
+.listings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.job-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.job-header {
+    margin-bottom: 1rem;
+}
+
+.job-header h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.company {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.job-details {
+    margin-bottom: 1.5rem;
+}
+
+.job-details p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.job-details i {
+    color: #2563eb;
+    width: 16px;
+}
+
+.job-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.apply-btn {
+    padding: 0.8rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.apply-btn:hover {
+    background: #1d4ed8;
+}
+
+.posted {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.load-more button {
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.load-more button:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* Responsive Design for Jobs Page */
+@media (max-width: 768px) {
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box input,
+    .search-box select,
+    .search-box button {
+        width: 100%;
+    }
+
+    .job-search {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .search-container h2 {
+        font-size: 2rem;
+    }
+
+    .listings-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .job-card {
+        padding: 1rem;
+    }
+
+    .job-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .apply-btn {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+/* App Tagline Section */
+.app-tagline {
+    background: #f8fafc;
+    padding: 3rem 2rem;
+    margin: 4rem auto;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tagline-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.tagline-text {
+    flex: 1.5;
+}
+
+.tagline-text h3 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.tagline-text p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.app-features {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.app-features span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.app-features i {
+    color: #2563eb;
+}
+
+.app-download-btn {
+    flex: 1;
+    text-align: center;
+}
+
+.download-button {
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+}
+
+.download-button img {
+    height: 48px;
+}
+
+.app-rating {
+    text-align: center;
+}
+
+.app-rating .stars {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.app-rating span {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles for App Tagline */
+@media (max-width: 768px) {
+    .app-tagline {
+        margin: 3rem 1rem;
+        padding: 2rem;
+    }
+
+    .tagline-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .tagline-text h3 {
+        font-size: 1.8rem;
+    }
+
+    .app-features {
+        justify-content: center;
+    }
+
+    .app-download-btn {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-tagline {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    .tagline-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .tagline-text p {
+        font-size: 1rem;
+    }
+
+    .app-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+/* Companies Header Styles */
+.companies-header {
+    background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.9)), url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1740');
+    background-size: cover;
+    background-position: center;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    color: white;
+}
+
+.companies-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.companies-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Companies List Styles */
+.companies-list {
+    padding: 4rem 2rem;
+    background: #f8fafc;
+}
+
+.companies-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.company-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.company-card:hover {
+    transform: translateY(-5px);
+}
+
+.company-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.company-logo i {
+    font-size: 3rem;
+    color: #2563eb;
+}
+
+.company-info h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.company-info .location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+}
+
+.company-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.company-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.company-stats i {
+    color: #2563eb;
+}
+
+.job-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.job-types span {
+    background: #f1f5f9;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.view-jobs {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.view-jobs:hover {
+    background: #1d4ed8;
+}
+
+/* Responsive Styles for Companies Page */
+@media (max-width: 768px) {
+    .companies-container {
+        grid-template-columns: 1fr;
+    }
+
+    .company-card {
+        padding: 1.5rem;
+    }
+
+    .company-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* App Tagline in Companies Page */
+.app-tagline {
+    background: #f8fafc;
+    padding: 3rem 2rem;
+    margin: 4rem auto;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tagline-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.tagline-text {
+    flex: 1.5;
+}
+
+.tagline-text h3 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.tagline-text p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.app-features {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.app-features span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.app-features i {
+    color: #2563eb;
+}
+
+.app-download-btn {
+    flex: 1;
+    text-align: center;
+}
+
+.download-button {
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+}
+
+.download-button img {
+    height: 48px;
+}
+
+.app-rating {
+    text-align: center;
+}
+
+.app-rating .stars {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.app-rating span {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles for App Tagline */
+@media (max-width: 768px) {
+    .app-tagline {
+        margin: 3rem 1rem;
+        padding: 2rem;
+    }
+
+    .tagline-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .tagline-text h3 {
+        font-size: 1.8rem;
+    }
+
+    .app-features {
+        justify-content: center;
+    }
+
+    .app-download-btn {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-tagline {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    .tagline-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .tagline-text p {
+        font-size: 1rem;
+    }
+
+    .app-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+/* Contact Page Styles */
+.contact-header {
+    background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.9)), url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1474');
+    background-size: cover;
+    background-position: center;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    color: white;
+}
+
+.contact-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-section {
+    padding: 4rem 2rem;
+    background: #f8fafc;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card i {
+    font-size: 2rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    color: #1e293b;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.info-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.contact-form-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h3 {
+    color: #1e293b;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.contact-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #1e293b;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.submit-btn {
+    background: #2563eb;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn:hover {
+    background: #1d4ed8;
+}
+
+.map-section {
+    padding: 0 2rem 4rem;
+    background: #f8fafc;
+}
+
+.map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Styles for Contact Page */
+@media (max-width: 1024px) {
+    .contact-container {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-header {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .contact-header h2 {
+        font-size: 2rem;
+    }
+
+    .contact-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .info-card {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .contact-form-container {
+        padding: 2rem;
+    }
+
+    .form-header h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-header {
+        padding: 5rem 1rem 2.5rem;
+    }
+
+    .contact-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .contact-section {
+        padding: 2rem 1rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+    }
+
+    .info-card {
+        padding: 1.5rem;
+    }
+
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.7rem;
+    }
+
+    .map-section {
+        padding: 0 1rem 2rem;
+    }
 } 
