@@ -271,14 +271,15 @@ body {
 
 .app-content h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #1e293b;
 }
 
 .app-content p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #64748b;
     margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .app-features {
@@ -291,23 +292,39 @@ body {
     align-items: center;
     margin-bottom: 1rem;
     color: #1e293b;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .app-features li i {
     color: #2563eb;
     margin-right: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    width: 24px;
+}
+
+.job-types {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.job-types p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.job-types p:last-child {
+    margin-bottom: 0;
 }
 
 .app-buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
 }
 
 .store-button img {
-    height: 40px;
+    height: 50px;
     transition: transform 0.3s ease;
 }
 
@@ -480,8 +497,11 @@ body {
 
     .app-download {
         flex-direction: column;
-        text-align: center;
         padding: 3rem 1.5rem;
+    }
+
+    .app-content {
+        text-align: center;
     }
 
     .app-features {
@@ -489,12 +509,10 @@ body {
         text-align: left;
     }
 
-    .app-buttons {
-        justify-content: center;
-    }
     .app-content h2 {
         font-size: 2rem;
     }
+
     .footer-container {
         grid-template-columns: 1fr;
     }
@@ -537,8 +555,12 @@ body {
         font-size: 1.8rem;
     }
 
+    .app-content p {
+        font-size: 1.1rem;
+    }
+
     .app-features li {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .app-buttons {
