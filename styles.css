@@ -455,7 +455,7 @@ body {
         display: none;
         position: absolute;
         top: 100%;
-        left: 0;
+        right: 0;
         width:80%;
         background: white;
         padding: 1rem;
@@ -1159,7 +1159,12 @@ body {
         margin: 3rem 1rem;
         padding: 2rem;
     }
-
+    .feature-card h3{
+        font-size: 1.2rem;
+    }
+    .feature-card p{
+        font-size: 0.9rem;
+    }
     .tagline-content {
         flex-direction: column;
         text-align: center;
@@ -1191,7 +1196,12 @@ body {
     .tagline-text p {
         font-size: 1rem;
     }
-
+.feature-card h3{
+    font-size: 1.2rem;
+}
+.feature-card p{
+    font-size: 0.9rem;
+}
     .app-features {
         flex-direction: column;
         align-items: center;
