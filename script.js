@@ -1,129 +1,81 @@
-// Mobile Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        navLinks.classList.remove('active');
-    }
-});
-
-// Image Slider
+// DOM Elements
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.nav-menu');
+const slider = document.querySelector('.slider');
 const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
-let currentSlide = 0;
-let isAnimating = false;
-const slideInterval = 6000; // Change slide every 6 seconds
+const dotsContainer = document.querySelector('.slider-dots');
+const navLinks = document.querySelectorAll('.nav-link');
 
-function updateDots(index) {
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[index].classList.add('active');
-}
-
-function showSlide(index) {
-    if (isAnimating) return;
-    isAnimating = true;
-
-    slides.forEach(slide => slide.classList.remove('active'));
-    
-    if (index >= slides.length) {
-        currentSlide = 0;
-    } else if (index < 0) {
-        currentSlide = slides.length - 1;
-    } else {
-        currentSlide = index;
-    }
-    
-    updateDots(currentSlide);
-    slides[currentSlide].classList.add('active');
-
-    // Reset animation flag after transition
-    setTimeout(() => {
-        isAnimating = false;
-    }, 800); // Match this with the CSS transition time
-}
-
-// Next and Previous button functionality
-nextBtn.addEventListener('click', () => {
-    showSlide(currentSlide + 1);
+// Mobile Menu Toggle
+mobileMenu.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.classList.toggle('menu-open'); // Add this to prevent background scrolling
 });
 
-prevBtn.addEventListener('click', () => {
-    showSlide(currentSlide - 1);
-});
-
-// Dot navigation
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showSlide(index);
+// Close mobile menu when clicking a nav link
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
     });
 });
 
-// Touch events for mobile swipe
-let touchStartX = 0;
-let touchEndX = 0;
+// Slider functionality
+let currentSlide = 0;
 
-const slider = document.querySelector('.hero-slider');
-
-slider.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, false);
-
-slider.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-}, false);
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const difference = touchStartX - touchEndX;
-
-    if (Math.abs(difference) > swipeThreshold) {
-        if (difference > 0) {
-            // Swipe left
-            showSlide(currentSlide + 1);
-        } else {
-            // Swipe right
-            showSlide(currentSlide - 1);
-        }
-    }
-}
-
-// Automatic slider
-let slideTimer;
-
-function startSlider() {
-    slideTimer = setInterval(() => {
-        showSlide(currentSlide + 1);
-    }, slideInterval);
-}
-
-function resetSlideTimer() {
-    clearInterval(slideTimer);
-    startSlider();
-}
-
-// Reset timer when manually changing slides
-[prevBtn, nextBtn, ...dots].forEach(control => {
-    control.addEventListener('click', resetSlideTimer);
+// Create dots
+slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
 });
 
-// Initialize slider
-startSlider();
+const dots = document.querySelectorAll('.dot');
 
-// Pause slider on hover
+function updateDots() {
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function goToSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    currentSlide = index;
+    updateDots();
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    goToSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    goToSlide(currentSlide);
+}
+
+// Event listeners for slider controls
+prevBtn.addEventListener('click', prevSlide);
+nextBtn.addEventListener('click', nextSlide);
+
+// Auto slide
+let slideInterval = setInterval(nextSlide, 5000);
+
+// Pause auto slide on hover
 slider.addEventListener('mouseenter', () => {
-    clearInterval(slideTimer);
+    clearInterval(slideInterval);
 });
 
-slider.addEventListener('mouseleave', startSlider);
+slider.addEventListener('mouseleave', () => {
+    slideInterval = setInterval(nextSlide, 5000);
+});
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -132,34 +84,187 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({
-                behavior: 'smooth'
+                behavior: 'smooth',
+                block: 'start'
             });
-            // Close mobile menu after clicking a link
-            navLinks.classList.remove('active');
         }
     });
 });
 
-// Add scroll event listener for navbar
-const navbar = document.querySelector('.navbar');
-let lastScroll = 0;
-
+// Update active menu item on scroll
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        return;
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    const headerHeight = document.querySelector('.navbar').offsetHeight;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - headerHeight - 100;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Smooth scroll for navigation links
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            const headerHeight = document.querySelector('.navbar').offsetHeight;
+            
+            window.scrollTo({
+                top: targetSection.offsetTop - headerHeight,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Image Slider Functionality
+const initSlider = () => {
+    const sliderContainer = document.querySelector('.slider-container');
+    if (!sliderContainer) return;
+
+    const slides = document.querySelectorAll('.slide');
+    const sliderDots = document.querySelector('.slider-dots');
+    let currentSlide = 0;
+    const slideInterval = 5000;
+    let slideTimer;
+
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        sliderDots.appendChild(dot);
+
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+            resetTimer();
+        });
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    // Previous and Next buttons
+    document.querySelector('.prev')?.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+        resetTimer();
+    });
+
+    document.querySelector('.next')?.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+        resetTimer();
+    });
+
+    function goToSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+
+        currentSlide = index;
+
+        if (currentSlide >= slides.length) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
     }
-    
-    if (currentScroll > lastScroll) {
-        // Scrolling down
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        // Scrolling up
-        navbar.style.transform = 'translateY(0)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+
+    function resetTimer() {
+        clearInterval(slideTimer);
+        slideTimer = setInterval(autoSlide, slideInterval);
     }
+
+    function autoSlide() {
+        goToSlide(currentSlide + 1);
+    }
+
+    // Start automatic sliding
+    resetTimer();
+};
+
+// Initialize slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', initSlider);
+
+// Contact Form Handling
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
     
-    lastScroll = currentScroll;
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Basic form validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const course = document.getElementById('course').value;
+            const message = document.getElementById('message').value.trim();
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Validate phone number (basic Indian format)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+            
+            // If validation passes, you can handle form submission here
+            // For now, we'll just show a success message
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        // Real-time validation feedback
+        const inputs = contactForm.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.value.trim()) {
+                    input.classList.add('is-valid');
+                    input.classList.remove('is-invalid');
+                } else {
+                    input.classList.add('is-invalid');
+                    input.classList.remove('is-valid');
+                }
+            });
+        });
+    }
+});
+
+// Add active class to nav links on scroll
+window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - sectionHeight / 3)) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+            link.classList.add('active');
+        }
+    });
 }); 
