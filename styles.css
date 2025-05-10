@@ -474,16 +474,16 @@ body {
     }
 
     .hero-slider {
-        height: 400px;
+        height: 200px;
     }
 
     .slide-content h2 {
-        font-size: 1.6rem;
+        font-size: 1rem;
     }
 
     .slide-content p {
-        font-size: 0.8rem;
-        padding: 0 15px;
+        font-size: 10px;
+        padding: 0 14px;
     }
 
     .cta-button {
@@ -529,11 +529,11 @@ body {
     }
 
     .slide-content h2 {
-        font-size: 0.3rem;
+        font-size: 0.1rem;
     }
 
     .slide-content p {
-        font-size: 0.3rem;
+        font-size: 10px;
         padding: 0 10px;
     }
 
@@ -789,6 +789,14 @@ body {
 
     .job-card {
         padding: 1rem;
+    }
+    .slide-content h2 {
+        font-size: 1rem;
+    }
+
+    .slide-content p {
+        font-size: 0.2rem;
+        padding: 0 11px;
     }
 
     .job-header h3 {
