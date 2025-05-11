@@ -495,7 +495,7 @@ body {
     .nav-links {
         display: none;
         position: fixed;
-        top: 90px;
+        top: 80px;
         right: 0;
         width: 60%;
         background: white;
@@ -603,7 +603,7 @@ body {
     }
 
     .nav-links {
-        top: 90px;
+        top: 80px;
         max-height: calc(100vh - 60px);
     }
 
